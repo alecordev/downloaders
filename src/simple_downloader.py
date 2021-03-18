@@ -4,8 +4,12 @@ import argparse
 import datetime
 import requests
 
+
 def log(msg):
-    print('[{}] {}'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f'), msg))
+    print(
+        '[{}] {}'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f'), msg)
+    )
+
 
 def download(url):
     try:
@@ -23,6 +27,7 @@ def download(url):
     except Exception as e:
         log(e)
 
+
 def download_list(filename):
     try:
         with open(filename, 'r') as f:
@@ -31,10 +36,13 @@ def download_list(filename):
     except Exception as e:
         log(e)
 
+
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--filename', help='Filename containing one url per line', type=str)
+    parser.add_argument(
+        '-f', '--filename', help='Filename containing one url per line', type=str
+    )
     parser.add_argument('-u', '--url', help='Link of file to download', type=str)
     args = parser.parse_args()
 
