@@ -1,14 +1,17 @@
 import asyncio
+
 import aiohttp
 import aiofiles
+import async_timeout
 
 
 async def download_file(filename, url, session):
-    async with session.get(url) as response:
-        with aiofiles.open(filename, 'wb') as fd:
-            async for data in response.content.iter_chunked(1024):
-                fd.write(data)
-    return 'Successfully downloaded ' + filename
+    async with async_timeout.timeout(120):
+        async with session.get(url) as response:
+            with aiofiles.open(filename, 'wb') as fd:
+                async for data in response.content.iter_chunked(1024):
+                    fd.write(data)
+        return 'Successfully downloaded ' + filename
 
 
 async def main(urls):
