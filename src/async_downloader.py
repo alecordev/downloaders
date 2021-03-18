@@ -43,12 +43,5 @@ def main():
     loop.run_until_complete(process())
 
 
-# import requests
-# from concurrent.futures import ThreadPoolExecutor
-
-# def main():
-#     urls = [line.strip().split() for line in open("aqm.txt", "r") if len(line) > 10]
-
-
 if __name__ == "__main__":
     main()
